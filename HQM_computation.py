@@ -351,6 +351,11 @@ D_hqm = [0]
 hqm = control.ss2tf(A_hqm,B_hqm,C_hqm,D_hqm)
 sys_filter = control.tf([20**2],[1,2*20,20**2])
 hqm = hqm*sys_filter
-plt.figure()
-control.bode(hqm,np.linspace(0,40,250),dB=0)
+mag, phase, omega = control.bode(hqm,np.linspace(0,40,250),dB=0,plot = 0)
+plt.close(('all'))
+plt.plot(omega,mag,label = 'HQM for the '+ bicycle + ' bicycle')
+plt.legend()
+plt.grid()
+plt.xlabel('Omega (rad/s)')
+plt.ylabel('HQM')
 
